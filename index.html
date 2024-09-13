@@ -936,3 +936,131 @@
     e.preventDefault();
 });
 </script>
+<style>
+      /* Round Chat Icon */
+      .chat-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .chat-icon img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+
+      /* Hover effect with blue shadow and scaling */
+      .chat-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 255, 0.6);
+      }
+
+      /* Popup Chat Window */
+      .chat-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        border-radius: 0 15px 15px 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        animation: slide-in 0.4s ease-out;
+      }
+
+      /* Animation for sliding chat popup */
+      @keyframes slide-in {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      /* Chat Popup Header */
+      .chat-popup-header {
+        background-color: #1a1a1a;
+        color: rgb(255, 255, 255);
+        padding: 10px;
+        text-align: center;
+        position: relative;
+      }
+
+      .chat-popup-header h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Chat Iframe */
+      .chat-iframe {
+        width: 100%;
+        height: calc(100% - 50px); /* Adjust height based on the header */
+        border: none;
+        flex-grow: 1;
+      }
+
+      /* Popup Footer */
+      .chat-popup-footer {
+        background-color: #1a1a1a; /* Change to your desired color */
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Round Chat Icon -->
+    <div class="chat-icon" onclick="openChat()">
+      <img src="chat-icon.png" alt="Chat Icon" />
+    </div>
+
+    <!-- Popup Chat Window -->
+    <div id="chatPopup" class="chat-popup">
+      <div class="chat-popup-header">
+        <span class="close-btn" onclick="closeChat()">&times;</span>
+      </div>
+      <iframe
+        src="https://pettahai-imaginichatbot.onrender.com/"
+        class="chat-iframe"></iframe>
+      <!-- Footer -->
+      <div class="chat-popup-footer"></div>
+    </div>
+
+    <script>
+      function openChat() {
+        document.getElementById("chatPopup").style.display = "block";
+      }
+
+      function closeChat() {
+        document.getElementById("chatPopup").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
